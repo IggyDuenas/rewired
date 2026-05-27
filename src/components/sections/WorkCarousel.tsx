@@ -3,77 +3,132 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
+// ─── Types ────────────────────────────────────────────────────────────────────
+
 interface CardData {
+  // Section bg
   bg: string;
+  // Glow overlay (optional, shown behind card when active)
+  glow?: string;
+  // Card chrome
   cardBg: string;
+  cardBorder: string;
+  cardShadow: string;
+  // Text
   textColor: string;
+  descColor: string;
+  // Tag pill
   tag: string;
   tagFont: 'mono' | 'caveat';
+  tagBg: string;
+  tagTextColor: string;
+  tagBorder: string;
+  // Project name
   name: string;
   nameFont: 'syne' | 'caveat';
+  // Description
   description: string;
   descFont?: 'caveat';
+  // Stack pills
   stack: string[];
-  link?: string;
+  pillBorder: string;
+  pillText: string;
+  // Placeholder image area
   placeholderBg?: string;
   placeholderBorder?: string;
+  // Live link
+  link?: string;
+  linkColor: string;
+  // Sketched card variant
   dashed?: boolean;
   rotation?: number;
-  border?: string;
-  boxShadow?: string;
 }
 
+// ─── Data ────────────────────────────────────────────────────────────────────
+
 const CARDS: CardData[] = [
+  // 0 — TheHouseHub
   {
-    bg: '#0d0d1a',
-    cardBg: '#0d0d1a',
-    textColor: '#f0f0f0',
+    bg: '#0A0A0A',
+    glow: 'radial-gradient(ellipse at 30% 50%, rgba(110,231,183,0.06) 0%, transparent 60%)',
+    cardBg: '#0A0A0A',
+    cardBorder: '1.5px solid rgba(110,231,183,0.15)',
+    cardShadow: '4px 4px 0px rgba(110,231,183,0.1)',
+    textColor: '#ffffff',
+    descColor: 'rgba(255,255,255,0.6)',
     tag: 'Audio Platform',
     tagFont: 'mono',
+    tagBg: 'rgba(110,231,183,0.08)',
+    tagTextColor: 'rgba(110,231,183,0.6)',
+    tagBorder: '1px solid rgba(110,231,183,0.2)',
     name: 'TheHouseHub',
     nameFont: 'syne',
     description: 'Browser-based music production. Drag, drop, create.',
     stack: ['Next.js', 'Supabase', 'Vercel'],
+    pillBorder: 'rgba(110,231,183,0.3)',
+    pillText: 'rgba(110,231,183,0.7)',
     link: 'thehousehub.xyz',
-    placeholderBg: '#1a1a2e',
-    placeholderBorder: '1px solid #2a2a4e',
+    linkColor: '#6EE7B7',
+    placeholderBg: '#0d1a14',
+    placeholderBorder: '1px solid rgba(110,231,183,0.12)',
   },
+  // 1 — Footy Dept.
   {
-    bg: '#071a0f',
-    cardBg: '#071a0f',
-    textColor: '#f0f0f0',
+    bg: '#000000',
+    cardBg: '#000000',
+    cardBorder: '1.5px solid rgba(96,165,250,0.15)',
+    cardShadow: '4px 4px 0px rgba(96,165,250,0.1)',
+    textColor: '#ffffff',
+    descColor: 'rgba(255,255,255,0.6)',
     tag: 'Ecommerce',
     tagFont: 'mono',
+    tagBg: 'rgba(96,165,250,0.08)',
+    tagTextColor: 'rgba(96,165,250,0.6)',
+    tagBorder: '1px solid rgba(96,165,250,0.2)',
     name: 'Footy Dept.',
     nameFont: 'syne',
     description: 'Full ecommerce storefront. Football culture, built properly.',
     stack: ['Next.js', 'Supabase', 'Stripe', 'Vercel'],
+    pillBorder: 'rgba(96,165,250,0.3)',
+    pillText: 'rgba(96,165,250,0.7)',
     link: 'footy-dept.com',
-    placeholderBg: '#0d2a1a',
-    placeholderBorder: '1px solid #1a4a2a',
+    linkColor: '#60A5FA',
+    placeholderBg: '#000814',
+    placeholderBorder: '1px solid rgba(96,165,250,0.12)',
   },
+  // 2 — Your New Website (sketched, light)
   {
     bg: '#f7f6f2',
     cardBg: '#ffffff',
+    cardBorder: '2px dashed #1a1a1a',
+    cardShadow: '4px 4px 0px #1a1a1a',
     textColor: '#1a1a1a',
+    descColor: 'var(--muted)',
     tag: 'next project...',
     tagFont: 'caveat',
+    tagBg: 'transparent',
+    tagTextColor: 'var(--muted)',
+    tagBorder: 'none',
     name: 'Your New Website',
     nameFont: 'caveat',
     description: "This slot is yours. Let's build something worth showing off.",
     descFont: 'caveat',
     stack: [],
+    pillBorder: 'var(--border)',
+    pillText: 'var(--muted)',
+    linkColor: 'var(--fg)',
     dashed: true,
     rotation: -0.8,
-    border: '2px dashed #1a1a1a',
-    boxShadow: '4px 4px 0px #1a1a1a',
   },
 ];
 
-// Card width chosen so it fits phones (≥ 360px) without horizontal overflow
+// ─── Constants ────────────────────────────────────────────────────────────────
+
 const CARD_WIDTH = 340;
 const CARD_GAP = 40;
 const CARD_SPACING = CARD_WIDTH + CARD_GAP;
+
+// ─── CarouselCard ─────────────────────────────────────────────────────────────
 
 function CarouselCard({ card }: { card: CardData }) {
   const isDashed = card.dashed;
@@ -82,8 +137,8 @@ function CarouselCard({ card }: { card: CardData }) {
     <div
       style={{
         backgroundColor: card.cardBg,
-        border: card.border ?? 'none',
-        boxShadow: card.boxShadow,
+        border: card.cardBorder,
+        boxShadow: card.cardShadow,
         borderRadius: '6px',
         overflow: 'hidden',
         color: card.textColor,
@@ -131,7 +186,8 @@ function CarouselCard({ card }: { card: CardData }) {
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '11px',
-              color: 'rgba(255,255,255,0.25)',
+              color: card.linkColor,
+              opacity: 0.4,
               letterSpacing: '0.04em',
             }}
           >
@@ -142,31 +198,31 @@ function CarouselCard({ card }: { card: CardData }) {
 
       {/* Card body */}
       <div style={{ padding: '20px 24px 24px' }}>
+        {/* Tag */}
         <div
           style={{
+            display: 'inline-block',
             fontFamily:
-              card.tagFont === 'caveat'
-                ? 'var(--font-caveat)'
-                : 'var(--font-mono)',
+              card.tagFont === 'caveat' ? 'var(--font-caveat)' : 'var(--font-mono)',
             fontSize: card.tagFont === 'caveat' ? '15px' : '11px',
-            color:
-              card.tagFont === 'caveat'
-                ? 'var(--muted)'
-                : 'rgba(255,255,255,0.4)',
+            color: card.tagTextColor,
+            backgroundColor: card.tagBg,
+            border: card.tagBorder,
+            borderRadius: card.tagFont === 'mono' ? '20px' : '0',
+            padding: card.tagFont === 'mono' ? '3px 10px' : '0',
             letterSpacing: card.tagFont === 'mono' ? '0.06em' : '0',
-            marginBottom: '8px',
+            marginBottom: '10px',
             textTransform: card.tagFont === 'mono' ? 'uppercase' : 'none',
           }}
         >
           {card.tag}
         </div>
 
+        {/* Name */}
         <div
           style={{
             fontFamily:
-              card.nameFont === 'caveat'
-                ? 'var(--font-caveat)'
-                : 'var(--font-syne)',
+              card.nameFont === 'caveat' ? 'var(--font-caveat)' : 'var(--font-syne)',
             fontWeight: 700,
             fontSize: card.nameFont === 'caveat' ? '26px' : '20px',
             color: card.textColor,
@@ -177,14 +233,12 @@ function CarouselCard({ card }: { card: CardData }) {
           {card.name}
         </div>
 
+        {/* Description */}
         <p
           style={{
             fontFamily: card.descFont ? 'var(--font-caveat)' : 'var(--font-mono)',
             fontSize: card.descFont ? '16px' : '12px',
-            color:
-              card.textColor === '#f0f0f0'
-                ? 'rgba(255,255,255,0.55)'
-                : 'var(--muted)',
+            color: card.descColor,
             lineHeight: 1.65,
             margin: '0 0 16px',
           }}
@@ -192,6 +246,7 @@ function CarouselCard({ card }: { card: CardData }) {
           {card.description}
         </p>
 
+        {/* Stack pills */}
         {card.stack.length > 0 && (
           <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '16px' }}>
             {card.stack.map((tech) => (
@@ -200,14 +255,8 @@ function CarouselCard({ card }: { card: CardData }) {
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
-                  color:
-                    card.textColor === '#f0f0f0'
-                      ? 'rgba(255,255,255,0.5)'
-                      : 'var(--muted)',
-                  border:
-                    card.textColor === '#f0f0f0'
-                      ? '1px solid rgba(255,255,255,0.15)'
-                      : '1px solid var(--border)',
+                  color: card.pillText,
+                  border: `1px solid ${card.pillBorder}`,
                   borderRadius: '3px',
                   padding: '3px 8px',
                   letterSpacing: '0.04em',
@@ -219,9 +268,12 @@ function CarouselCard({ card }: { card: CardData }) {
           </div>
         )}
 
+        {/* CTA */}
         {isDashed ? (
           <motion.a
-            href="https://cal.com"
+            href="https://cal.com/therewire/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: 'var(--font-mono)',
               fontWeight: 500,
@@ -234,7 +286,6 @@ function CarouselCard({ card }: { card: CardData }) {
               borderRadius: '2px',
               textDecoration: 'none',
               display: 'inline-block',
-              
             }}
             whileHover={{ boxShadow: '5px 5px 0px var(--fg)', x: -2, y: -2 }}
             transition={{ duration: 0.15 }}
@@ -247,8 +298,9 @@ function CarouselCard({ card }: { card: CardData }) {
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '12px',
-                color: 'rgba(255,255,255,0.35)',
+                color: card.linkColor,
                 letterSpacing: '0.04em',
+                opacity: 0.8,
               }}
             >
               ↗ {card.link}
@@ -260,24 +312,43 @@ function CarouselCard({ card }: { card: CardData }) {
   );
 }
 
+// ─── WorkCarousel ─────────────────────────────────────────────────────────────
+
 export default function WorkCarousel() {
   const [active, setActive] = useState(0);
 
   const goNext = () => setActive((i) => Math.min(i + 1, CARDS.length - 1));
   const goPrev = () => setActive((i) => Math.max(i - 1, 0));
 
-  const bgColors = CARDS.map((c) => c.bg);
+  const isLight = CARDS[active].bg === '#f7f6f2';
+  const arrowColor = isLight ? 'rgba(26,26,26,0.5)' : 'rgba(255,255,255,0.8)';
+  const arrowColorDisabled = isLight ? 'rgba(26,26,26,0.15)' : 'rgba(255,255,255,0.2)';
+  const arrowBorder = isLight ? 'rgba(26,26,26,0.15)' : 'rgba(255,255,255,0.2)';
+  const arrowBg = isLight ? 'rgba(26,26,26,0.05)' : 'rgba(255,255,255,0.08)';
 
   return (
     <section
-      style={{ padding: '100px 0 80px', position: 'relative', overflow: 'hidden' }}
+      style={{
+        padding: '100px 0 80px',
+        position: 'relative',
+        overflow: 'hidden',
+        // Hard cut — no transition
+        backgroundColor: CARDS[active].bg,
+      }}
     >
-      {/* Animated section background */}
-      <motion.div
-        animate={{ backgroundColor: bgColors[active] }}
-        transition={{ duration: 0.8, ease: 'easeInOut' }}
-        style={{ position: 'absolute', inset: 0, zIndex: 0 }}
-      />
+      {/* Per-card glow overlay (HouseHub only) */}
+      {CARDS[active].glow && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: CARDS[active].glow,
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+      )}
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         {/* Heading */}
@@ -310,11 +381,7 @@ export default function WorkCarousel() {
           </svg>
         </div>
 
-        {/* Cards stage:
-            Each card is absolutely centred (left:50%, marginLeft:-CARD_WIDTH/2)
-            and shifted by x = offset * CARD_SPACING.
-            No drag prop → no conflict with animate.
-            onPanEnd fires for touch/pointer swipes without taking over position. */}
+        {/* Cards stage */}
         <div style={{ position: 'relative' }}>
           <motion.div
             onPanEnd={(_, info) => {
@@ -369,16 +436,16 @@ export default function WorkCarousel() {
               width: '44px',
               height: '44px',
               borderRadius: '50%',
-              border: '1.5px solid rgba(255,255,255,0.2)',
-              backgroundColor: 'rgba(255,255,255,0.08)',
-              color: active === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.8)',
+              border: `1.5px solid ${arrowBorder}`,
+              backgroundColor: arrowBg,
+              color: active === 0 ? arrowColorDisabled : arrowColor,
               fontSize: '18px',
-              
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               backdropFilter: 'blur(8px)',
               zIndex: 2,
+              transition: 'color 0s, border-color 0s, background-color 0s',
             }}
           >
             ←
@@ -395,19 +462,16 @@ export default function WorkCarousel() {
               width: '44px',
               height: '44px',
               borderRadius: '50%',
-              border: '1.5px solid rgba(255,255,255,0.2)',
-              backgroundColor: 'rgba(255,255,255,0.08)',
-              color:
-                active === CARDS.length - 1
-                  ? 'rgba(255,255,255,0.2)'
-                  : 'rgba(255,255,255,0.8)',
+              border: `1.5px solid ${arrowBorder}`,
+              backgroundColor: arrowBg,
+              color: active === CARDS.length - 1 ? arrowColorDisabled : arrowColor,
               fontSize: '18px',
-              
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               backdropFilter: 'blur(8px)',
               zIndex: 2,
+              transition: 'color 0s, border-color 0s, background-color 0s',
             }}
           >
             →
@@ -433,9 +497,12 @@ export default function WorkCarousel() {
                 height: '8px',
                 borderRadius: '4px',
                 backgroundColor:
-                  i === active ? 'var(--spark)' : 'rgba(255,255,255,0.25)',
+                  i === active
+                    ? 'var(--spark)'
+                    : isLight
+                    ? 'rgba(26,26,26,0.2)'
+                    : 'rgba(255,255,255,0.25)',
                 border: 'none',
-                
                 padding: 0,
                 transition: 'all 0.3s ease',
               }}
