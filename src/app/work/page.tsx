@@ -75,7 +75,7 @@ const PROJECTS: Project[] = [
     ],
     stack: ['Next.js', 'Supabase', 'Stripe', 'Vercel', 'Tailwind'],
     href: 'https://footy-dept.vercel.app',
-    screenshot: '/screenshots/footy-dept.png',
+    screenshot: '/screenshots/footydept.png',
     screenshotAlt: 'Footy Dept website',
     reverse: false,
   },
@@ -172,22 +172,30 @@ function ScreenshotCol({
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7 }}
         style={{
-          aspectRatio: '16/10',
-          position: 'relative',
-          overflow: 'hidden',
-          borderRadius: '8px',
           border: '1.5px solid rgba(255,255,255,0.1)',
           boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
+          borderRadius: '8px',
           zIndex: 1,
+          overflow: 'hidden',
         }}
       >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          style={{ objectFit: 'cover' }}
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '16/10',
+            overflow: 'hidden',
+            borderRadius: '8px',
+          }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </div>
       </motion.div>
     </div>
   );
@@ -439,13 +447,10 @@ export default function WorkPage() {
 
       {/* ── SECTION 2: PROJECT CARDS ──────────────────────────────────────── */}
       {PROJECTS.map((project) => (
-        <motion.section
+        <section
           key={project.name}
-          initial={{ backgroundColor: '#f7f6f2' }}
-          whileInView={{ backgroundColor: project.bg }}
-          viewport={{ once: false, amount: 0.25 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
           style={{
+            backgroundColor: project.bg,
             width: '100%',
             minHeight: '100vh',
             display: 'flex',
@@ -536,7 +541,7 @@ export default function WorkPage() {
               </>
             )}
           </div>
-        </motion.section>
+        </section>
       ))}
 
       {/* ── SECTION 3: NEXT PROJECT ───────────────────────────────────────── */}
