@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f7f6f2;
+  --bg-dark: #0f0f0f;
+  --fg: #1a1a1a;
+  --muted: #888880;
+  --border: #d4d2c8;
+  --spark: #FFD60A;
+  --spark-glow: rgba(255, 214, 10, 0.15);
+  --wire: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  cursor: none;
+}
+
+body {
+  color: var(--fg);
+  background-color: var(--bg);
+  background-image: radial-gradient(circle, #c8c6bc 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: var(--font-syne), sans-serif;
+  cursor: none;
+}
+
+a,
+button {
+  cursor: none;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Stat bar responsive ── */
+@media (max-width: 640px) {
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-item {
+    border-right: none !important;
+    padding: 20px 24px !important;
+  }
+
+  /* add subtle borders between 2x2 grid cells */
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(3) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
