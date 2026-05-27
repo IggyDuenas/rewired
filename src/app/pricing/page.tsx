@@ -395,11 +395,11 @@ export default function PricingPage() {
                     {col}
                   </th>
                 ))}
-                {/* The Rewire — spark column */}
+                {/* The Rewire — dark column header with spark text */}
                 <th
                   style={{
-                    backgroundColor: 'var(--spark)',
-                    color: 'var(--fg)',
+                    backgroundColor: 'var(--fg)',
+                    color: 'var(--spark)',
                     fontFamily: 'var(--font-mono)',
                     fontSize: '13px',
                     fontWeight: 500,
@@ -445,7 +445,7 @@ export default function PricingPage() {
                     <td
                       style={{
                         backgroundColor: rowBg,
-                        fontFamily: isCross(row.wix) ? 'var(--font-mono)' : 'var(--font-mono)',
+                        fontFamily: 'var(--font-mono)',
                         fontSize: '13px',
                         color: isCross(row.wix) ? '#e63946' : 'var(--muted)',
                         padding: '14px 20px',
@@ -455,7 +455,24 @@ export default function PricingPage() {
                         position: 'relative',
                       }}
                     >
-                      {row.wix}
+                      {row.wix === '35–60' ? (
+                        <>
+                          {row.wix}
+                          <br />
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '10px',
+                              color: 'var(--muted)',
+                              fontWeight: 400,
+                            }}
+                          >
+                            loads in 3–5 seconds
+                          </span>
+                        </>
+                      ) : (
+                        row.wix
+                      )}
                       {row.wixAnnotation && (
                         <span
                           style={{
@@ -486,13 +503,30 @@ export default function PricingPage() {
                         borderBottom: '1px solid var(--border)',
                       }}
                     >
-                      {row.shopify}
+                      {row.shopify === '45–65' ? (
+                        <>
+                          {row.shopify}
+                          <br />
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '10px',
+                              color: 'var(--muted)',
+                              fontWeight: 400,
+                            }}
+                          >
+                            loads in 2–4 seconds
+                          </span>
+                        </>
+                      ) : (
+                        row.shopify
+                      )}
                     </td>
 
-                    {/* The Rewire */}
+                    {/* The Rewire — always dark bg, spark or white text */}
                     <td
                       style={{
-                        backgroundColor: rowBg,
+                        backgroundColor: '#1a1a1a',
                         fontFamily: isZero(row.rewire)
                           ? 'var(--font-syne)'
                           : 'var(--font-mono)',
@@ -500,15 +534,31 @@ export default function PricingPage() {
                         fontSize: isZero(row.rewire) ? '15px' : '13px',
                         color: isRewirePositive(row.rewire)
                           ? 'var(--spark)'
-                          : 'var(--muted)',
+                          : 'rgba(255,255,255,0.7)',
                         padding: '14px 20px',
                         textAlign: 'center',
-                        borderBottom: '1px solid var(--border)',
-                        // Stronger left border to separate the "winner" column
+                        borderBottom: '1px solid rgba(255,255,255,0.08)',
                         borderLeft: '1.5px solid var(--fg)',
                       }}
                     >
-                      {row.rewire}
+                      {row.rewire === '90–100' ? (
+                        <>
+                          {row.rewire}
+                          <br />
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '10px',
+                              color: 'rgba(255,255,255,0.5)',
+                              fontWeight: 400,
+                            }}
+                          >
+                            loads in under 1 second
+                          </span>
+                        </>
+                      ) : (
+                        row.rewire
+                      )}
                     </td>
                   </tr>
                 );

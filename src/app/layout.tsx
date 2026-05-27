@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Syne, DM_Mono, Caveat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/ui/Footer';
 
 const syne = Syne({
   weight: ['400', '500', '600', '700', '800'],
@@ -48,6 +49,7 @@ export default function RootLayout({
         >
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
