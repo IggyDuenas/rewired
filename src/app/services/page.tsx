@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -217,202 +216,16 @@ function DetailsCol({
               textDecoration: 'none',
             }}
             onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLAnchorElement).style.textDecoration =
-                'underline')
+              ((e.currentTarget as HTMLAnchorElement).style.textDecoration = 'underline')
             }
             onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLAnchorElement).style.textDecoration =
-                'none')
+              ((e.currentTarget as HTMLAnchorElement).style.textDecoration = 'none')
             }
           >
             See pricing →
           </Link>
         </div>
       </div>
-    </motion.div>
-  );
-}
-
-// ─── CaseStudyCard ────────────────────────────────────────────────────────────
-
-interface CaseStat {
-  value: string;
-  label: string;
-}
-
-interface CaseStudyCardProps {
-  projectName: string;
-  description: string;
-  stats: CaseStat[];
-  screenshot: string;
-  screenshotAlt: string;
-  workHref: string;
-  dark?: boolean;
-}
-
-function CaseStudyCard({
-  projectName,
-  description,
-  stats,
-  screenshot,
-  screenshotAlt,
-  workHref,
-  dark,
-}: CaseStudyCardProps) {
-  const cardBg = dark ? 'rgba(255,255,255,0.05)' : '#ffffff';
-  const cardBorder = dark
-    ? '1.5px solid rgba(255,255,255,0.15)'
-    : '1.5px solid var(--fg)';
-  const cardShadow = dark
-    ? '4px 4px 0px rgba(255,255,255,0.1)'
-    : '4px 4px 0px var(--fg)';
-  const labelColor = dark ? 'rgba(255,255,255,0.4)' : 'var(--muted)';
-  const nameColor = dark ? '#ffffff' : 'var(--fg)';
-  const descColor = dark ? 'rgba(255,255,255,0.55)' : 'var(--muted)';
-  const statLabelColor = dark ? 'rgba(255,255,255,0.4)' : 'var(--muted)';
-  const statValueColor = dark ? 'var(--spark)' : 'var(--fg)';
-  const dividerColor = dark ? 'rgba(255,255,255,0.1)' : 'var(--border)';
-  const linkColor = dark ? 'rgba(255,255,255,0.5)' : 'var(--muted)';
-
-  return (
-    <motion.div
-      {...REVEAL}
-      transition={{ duration: 0.6, delay: 0.1 }}
-      style={{
-        backgroundColor: cardBg,
-        border: cardBorder,
-        boxShadow: cardShadow,
-        borderRadius: '4px',
-        padding: '28px',
-      }}
-    >
-      {/* Label */}
-      <div
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '11px',
-          color: labelColor,
-          textTransform: 'uppercase',
-          letterSpacing: '0.1em',
-        }}
-      >
-        Real Example
-      </div>
-
-      {/* Project name */}
-      <div
-        style={{
-          fontFamily: 'var(--font-syne)',
-          fontWeight: 700,
-          fontSize: '20px',
-          color: nameColor,
-          marginTop: '8px',
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {projectName}
-      </div>
-
-      {/* Description */}
-      <p
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '13px',
-          color: descColor,
-          lineHeight: 1.75,
-          marginTop: '8px',
-          marginBottom: 0,
-        }}
-      >
-        {description}
-      </p>
-
-      {/* Mini stats */}
-      <div
-        style={{
-          display: 'flex',
-          gap: '24px',
-          marginTop: '20px',
-          flexWrap: 'wrap',
-        }}
-      >
-        {stats.map((s) => (
-          <div key={s.label}>
-            <div
-              style={{
-                fontFamily: 'var(--font-syne)',
-                fontWeight: 700,
-                fontSize: '22px',
-                color: statValueColor,
-                lineHeight: 1,
-                letterSpacing: '-0.01em',
-              }}
-            >
-              {s.value}
-            </div>
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '10px',
-                color: statLabelColor,
-                marginTop: '3px',
-                letterSpacing: '0.02em',
-              }}
-            >
-              {s.label}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Divider */}
-      <div
-        style={{
-          height: '1px',
-          backgroundColor: dividerColor,
-          margin: '20px 0',
-        }}
-      />
-
-      {/* Screenshot */}
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          aspectRatio: '16/9',
-          overflow: 'hidden',
-          borderRadius: '4px',
-        }}
-      >
-        <Image
-          src={screenshot}
-          alt={screenshotAlt}
-          fill
-          style={{ objectFit: 'cover' }}
-        />
-      </div>
-
-      {/* View project link */}
-      <Link
-        href={workHref}
-        style={{
-          display: 'inline-block',
-          marginTop: '14px',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '12px',
-          color: linkColor,
-          textDecoration: 'none',
-          transition: 'color 0.15s',
-        }}
-        onMouseEnter={(e) =>
-          ((e.currentTarget as HTMLAnchorElement).style.color = 'var(--spark)')
-        }
-        onMouseLeave={(e) =>
-          ((e.currentTarget as HTMLAnchorElement).style.color = linkColor)
-        }
-      >
-        View Case Study →
-      </Link>
     </motion.div>
   );
 }
@@ -483,16 +296,7 @@ export default function ServicesPage() {
           width: '100%',
         }}
       >
-        <div
-          style={{
-            maxWidth: '1100px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '60px',
-            alignItems: 'start',
-          }}
-        >
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
           <DetailsCol
             num="01"
             name="Migration"
@@ -504,18 +308,6 @@ export default function ServicesPage() {
               'You have features you want that your platform cannot support',
               'Your site looks like a template because it is one',
             ]}
-          />
-          <CaseStudyCard
-            projectName="Footy Dept."
-            description="A full ecommerce storefront migrated from a basic Shopify theme to a custom Next.js stack. Built in 6-8 days. Platform fees eliminated. Conversion rate up 62%."
-            stats={[
-              { value: '+62%', label: 'Conversion Rate' },
-              { value: '$340/mo', label: 'Fees Eliminated' },
-              { value: '100/95', label: 'PageSpeed D/M' },
-            ]}
-            screenshot="/screenshots/househub.png"
-            screenshotAlt="Footy Dept website"
-            workHref="/work"
           />
         </div>
       </section>
@@ -529,45 +321,19 @@ export default function ServicesPage() {
           width: '100%',
         }}
       >
-        <div
-          style={{
-            maxWidth: '1100px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '60px',
-            alignItems: 'start',
-          }}
-        >
-          {/* Case study LEFT, details RIGHT — CSS order trick for mobile stacking */}
-          <div style={{ order: 1 }}>
-            <CaseStudyCard
-              projectName="Footy Dept."
-              description="Conceived, designed, and built from zero as a premium football culture ecommerce brand. Full custom stack, live in under 8 days, built to scale from day one."
-              stats={[
-                { value: '6-8 Days', label: 'Idea to Launch' },
-                { value: '+45%', label: 'Overall ROI' },
-                { value: '0', label: 'Templates Used' },
-              ]}
-              screenshot="/screenshots/househub.png"
-              screenshotAlt="Footy Dept website"
-              workHref="/work"
-            />
-          </div>
-          <div style={{ order: 0 }}>
-            <DetailsCol
-              num="02"
-              name="New Build"
-              tagline="starting from scratch, done properly"
-              description="You have an idea that deserves more than a template. Maybe it is a brand you are launching, a product you are releasing, or a business you are scaling. You want it built right from day one — fast, custom, ownable. Not something you will need to rebuild in 18 months because you hit a ceiling."
-              bullets={[
-                'You have a clear vision but no technical co-founder',
-                'You want to own your code, not rent a platform',
-                'You need something live in days not months',
-                'You have tried builders and none of them fit',
-              ]}
-            />
-          </div>
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+          <DetailsCol
+            num="02"
+            name="New Build"
+            tagline="starting from scratch, done properly"
+            description="You have an idea that deserves more than a template. Maybe it is a brand you are launching, a product you are releasing, or a business you are scaling. You want it built right from day one — fast, custom, ownable. Not something you will need to rebuild in 18 months because you hit a ceiling."
+            bullets={[
+              'You have a clear vision but no technical co-founder',
+              'You want to own your code, not rent a platform',
+              'You need something live in days not months',
+              'You have tried builders and none of them fit',
+            ]}
+          />
         </div>
       </section>
 
@@ -579,16 +345,7 @@ export default function ServicesPage() {
           width: '100%',
         }}
       >
-        <div
-          style={{
-            maxWidth: '1100px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '60px',
-            alignItems: 'start',
-          }}
-        >
+        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
           <DetailsCol
             num="03"
             name="Custom Product"
@@ -600,19 +357,6 @@ export default function ServicesPage() {
               'You have real-time or interactive features that builders cannot support',
               'You have an idea no one has built before',
             ]}
-            dark
-          />
-          <CaseStudyCard
-            projectName="TheHouseHub"
-            description="A browser-based music production platform with drag and drop sample sequencing, real-time audio playback, user authentication, and free and paid tiers. No template could have built this. We built it anyway."
-            stats={[
-              { value: '847', label: 'Active Users' },
-              { value: '2.5 Weeks', label: 'Build Time' },
-              { value: '4.8/5', label: 'User Rating' },
-            ]}
-            screenshot="/screenshots/footydept.png"
-            screenshotAlt="TheHouseHub website"
-            workHref="/work"
             dark
           />
         </div>
@@ -627,10 +371,7 @@ export default function ServicesPage() {
           textAlign: 'center',
         }}
       >
-        <motion.div
-          {...REVEAL}
-          style={{ maxWidth: '560px', margin: '0 auto' }}
-        >
+        <motion.div {...REVEAL} style={{ maxWidth: '560px', margin: '0 auto' }}>
           <h2
             style={{
               fontFamily: 'var(--font-syne)',
