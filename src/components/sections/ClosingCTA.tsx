@@ -119,7 +119,7 @@ export default function ClosingCTA() {
               textDecoration: 'none',
               display: 'inline-block',
               letterSpacing: '0.03em',
-              cursor: 'none',
+              
             }}
             whileHover={{ boxShadow: '5px 5px 0px var(--fg)', x: -2, y: -2 }}
             transition={{ duration: 0.15 }}

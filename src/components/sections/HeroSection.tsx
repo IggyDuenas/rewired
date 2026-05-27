@@ -26,7 +26,7 @@ function HoverButton({
     borderRadius: '2px',
     textDecoration: 'none',
     display: 'inline-block',
-    cursor: 'none',
+    
     ...style,
   };
   return (

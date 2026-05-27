@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Syne, DM_Mono, Caveat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
-import Cursor from '@/components/Cursor';
 
 const syne = Syne({
   weight: ['400', '500', '600', '700', '800'],
@@ -38,7 +37,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} ${dmMono.variable} ${caveat.variable}`}>
       <body>
-        <Cursor />
         <Navbar />
         <div
           style={{

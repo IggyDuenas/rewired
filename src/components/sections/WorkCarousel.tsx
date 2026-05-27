@@ -234,7 +234,7 @@ function CarouselCard({ card }: { card: CardData }) {
               borderRadius: '2px',
               textDecoration: 'none',
               display: 'inline-block',
-              cursor: 'none',
+              
             }}
             whileHover={{ boxShadow: '5px 5px 0px var(--fg)', x: -2, y: -2 }}
             transition={{ duration: 0.15 }}
@@ -373,7 +373,7 @@ export default function WorkCarousel() {
               backgroundColor: 'rgba(255,255,255,0.08)',
               color: active === 0 ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.8)',
               fontSize: '18px',
-              cursor: 'none',
+              
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -402,7 +402,7 @@ export default function WorkCarousel() {
                   ? 'rgba(255,255,255,0.2)'
                   : 'rgba(255,255,255,0.8)',
               fontSize: '18px',
-              cursor: 'none',
+              
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -435,7 +435,7 @@ export default function WorkCarousel() {
                 backgroundColor:
                   i === active ? 'var(--spark)' : 'rgba(255,255,255,0.25)',
                 border: 'none',
-                cursor: 'none',
+                
                 padding: 0,
                 transition: 'all 0.3s ease',
               }}
