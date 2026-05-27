@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import PlatformTierList from '@/components/ui/PlatformTierList';
 
 // ─── Reveal preset ───────────────────────────────────────────────────────────
 
@@ -284,6 +285,17 @@ export default function ServicesPage() {
             below — and see exactly how we have solved it before.
           </p>
         </motion.div>
+      </div>
+
+      {/* ── PLATFORM TIER LIST ────────────────────────────────────────────── */}
+      <div
+        style={{
+          borderTop: '1px solid var(--border)',
+          borderBottom: '1px solid var(--border)',
+          width: '100%',
+        }}
+      >
+        <PlatformTierList />
       </div>
 
       {/* ── SECTION 2: SERVICE 01 — MIGRATION ────────────────────────────── */}
