@@ -51,7 +51,7 @@ const TABLE_ROWS: TableRow[] = [
     label: 'Mobile PageSpeed Score',
     wix: '35–60',
     shopify: '45–65',
-    rewire: '90–100',
+    rewire: '95–100',
   },
   {
     label: 'Custom Features',
@@ -129,7 +129,7 @@ function isZero(val: string) {
 }
 
 function isRewirePositive(val: string) {
-  return isCheck(val) || val === '90–100' || val === 'None' || val === '14 Days' || val === '~$300';
+  return isCheck(val) || val === '95–100' || val === 'None' || val === '14 Days' || val === '~$300';
 }
 
 // ─── Page ────────────────────────────────────────────────────────────────────
@@ -541,7 +541,7 @@ export default function PricingPage() {
                         borderLeft: '1.5px solid var(--fg)',
                       }}
                     >
-                      {row.rewire === '90–100' ? (
+                      {row.rewire === '95–100' ? (
                         <>
                           {row.rewire}
                           <br />

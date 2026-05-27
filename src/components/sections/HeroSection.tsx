@@ -51,7 +51,8 @@ export default function HeroSection() {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '64px',
+        paddingTop: '120px',
+        paddingBottom: '80px',
       }}
     >
       {/* ── Left wire decoration ── */}
@@ -165,9 +166,9 @@ export default function HeroSection() {
           style={{
             fontFamily: 'var(--font-syne)',
             fontWeight: 800,
-            fontSize: 'clamp(48px, 8vw, 96px)',
+            fontSize: 'clamp(40px, 6vw, 72px)',
             color: 'var(--fg)',
-            lineHeight: 1.05,
+            lineHeight: 1.1,
             letterSpacing: '-0.02em',
             margin: '0 0 28px',
           }}
@@ -193,7 +194,7 @@ export default function HeroSection() {
             fontSize: '15px',
             color: 'var(--muted)',
             maxWidth: '520px',
-            margin: '0 auto 44px',
+            margin: '28px auto 44px',
             lineHeight: 1.75,
           }}
         >

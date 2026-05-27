@@ -43,14 +43,15 @@ body {
     padding: 20px 24px !important;
   }
 
-  /* add subtle borders between 2x2 grid cells */
+  /* add subtle borders between 3x2 grid cells */
   .stat-item:nth-child(1),
-  .stat-item:nth-child(2) {
+  .stat-item:nth-child(2),
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 
-  .stat-item:nth-child(1),
-  .stat-item:nth-child(3) {
+  .stat-item:nth-child(odd) {
     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 }

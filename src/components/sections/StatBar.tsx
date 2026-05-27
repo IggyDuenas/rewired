@@ -5,6 +5,8 @@ const STATS = [
   { value: '$500/mo', label: 'Platform Fees Eliminated' },
   { value: '3x', label: 'Faster Than Traditional Agencies' },
   { value: '7 Days', label: 'From Brief to Live' },
+  { value: '100', label: 'Desktop PageSpeed Score' },
+  { value: '95', label: 'Mobile PageSpeed Score' },
 ];
 
 export default function StatBar() {

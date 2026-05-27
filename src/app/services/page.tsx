@@ -511,9 +511,9 @@ export default function ServicesPage() {
             stats={[
               { value: '+62%', label: 'Conversion Rate' },
               { value: '$340/mo', label: 'Fees Eliminated' },
-              { value: '91/100', label: 'PageSpeed' },
+              { value: '100/95', label: 'PageSpeed D/M' },
             ]}
-            screenshot="/screenshots/footydept.png"
+            screenshot="/screenshots/househub.png"
             screenshotAlt="Footy Dept website"
             workHref="/work"
           />
@@ -549,7 +549,7 @@ export default function ServicesPage() {
                 { value: '+45%', label: 'Overall ROI' },
                 { value: '0', label: 'Templates Used' },
               ]}
-              screenshot="/screenshots/footydept.png"
+              screenshot="/screenshots/househub.png"
               screenshotAlt="Footy Dept website"
               workHref="/work"
             />
@@ -610,7 +610,7 @@ export default function ServicesPage() {
               { value: '2.5 Weeks', label: 'Build Time' },
               { value: '4.8/5', label: 'User Rating' },
             ]}
-            screenshot="/screenshots/househub.png"
+            screenshot="/screenshots/footydept.png"
             screenshotAlt="TheHouseHub website"
             workHref="/work"
             dark

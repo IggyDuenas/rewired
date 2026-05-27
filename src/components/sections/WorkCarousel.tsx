@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -33,9 +34,8 @@ interface CardData {
   stack: string[];
   pillBorder: string;
   pillText: string;
-  // Placeholder image area
-  placeholderBg?: string;
-  placeholderBorder?: string;
+  // Screenshot
+  screenshot?: string;
   // Live link
   link?: string;
   linkColor: string;
@@ -69,8 +69,7 @@ const CARDS: CardData[] = [
     pillText: 'rgba(110,231,183,0.7)',
     link: 'thehousehub.xyz',
     linkColor: '#6EE7B7',
-    placeholderBg: '#0d1a14',
-    placeholderBorder: '1px solid rgba(110,231,183,0.12)',
+    screenshot: '/screenshots/footydept.png',
   },
   // 1 — Footy Dept.
   {
@@ -93,8 +92,7 @@ const CARDS: CardData[] = [
     pillText: 'rgba(96,165,250,0.7)',
     link: 'footy-dept.com',
     linkColor: '#60A5FA',
-    placeholderBg: '#000814',
-    placeholderBorder: '1px solid rgba(96,165,250,0.12)',
+    screenshot: '/screenshots/househub.png',
   },
   // 2 — Your New Website (sketched, light)
   {
@@ -146,55 +144,49 @@ function CarouselCard({ card }: { card: CardData }) {
       }}
     >
       {/* Screenshot / placeholder */}
-      {isDashed ? (
-        <div
-          style={{
-            aspectRatio: '16/9',
-            border: '1.5px dashed var(--border)',
-            margin: '20px 20px 0',
-            borderRadius: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <span
+      <div style={{ margin: '20px 20px 0', borderRadius: '4px', overflow: 'hidden' }}>
+        {isDashed ? (
+          <div
             style={{
-              fontFamily: 'var(--font-caveat)',
-              fontSize: '64px',
-              color: 'var(--muted)',
-              lineHeight: 1,
+              aspectRatio: '16/9',
+              border: '1.5px dashed var(--border)',
+              borderRadius: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
-            ?
-          </span>
-        </div>
-      ) : (
-        <div
-          style={{
-            aspectRatio: '16/9',
-            backgroundColor: card.placeholderBg,
-            border: card.placeholderBorder,
-            margin: '20px 20px 0',
-            borderRadius: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <span
+            <span
+              style={{
+                fontFamily: 'var(--font-caveat)',
+                fontSize: '64px',
+                color: 'var(--muted)',
+                lineHeight: 1,
+              }}
+            >
+              ?
+            </span>
+          </div>
+        ) : (
+          <div
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '11px',
-              color: card.linkColor,
-              opacity: 0.4,
-              letterSpacing: '0.04em',
+              position: 'relative',
+              width: '100%',
+              aspectRatio: '16/9',
+              borderRadius: '4px',
+              overflow: 'hidden',
             }}
           >
-            {card.link}
-          </span>
-        </div>
-      )}
+            <Image
+              src={card.screenshot!}
+              alt={card.name}
+              fill
+              style={{ objectFit: 'cover' }}
+              sizes="340px"
+            />
+          </div>
+        )}
+      </div>
 
       {/* Card body */}
       <div style={{ padding: '20px 24px 24px' }}>
